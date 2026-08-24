@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <style>
+        body{
+            background-color: rgb(196, 215, 25);
+        }
+        .box {
+            background-color:rgb(213, 17, 17);
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            float: right
+        
+        }
+
+        .z {
+            background-color: rgb(8, 8, 8);
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            padding:20px;
+            margin:50px;
+        }
+        .a{
+           animation:myanimation 3s ease-in-out 1s infinite alternate; 
+        }
+        .b{
+            animation:myanimation2 3s ease-in-out 1s infinite alternate; 
+        }
+
+        @keyframes myanimation {
+            from {
+                transform:translateY(700px);
+            }
+            to {
+                
+            }
+        }
+        @keyframes myanimation2{
+            from {
+                
+            }
+            to {
+                transform:translateY(700px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <div class="a z"></div>
+    <div class="b z"></div>
+    <div class="a z"></div>
+    <div class="b z"></div>
+    <div class="a z"></div>
+    <div class="b z"></div>
+    <div class="a z"></div>
+    <div class="b z"></div>
+
+
+</body>
+
+</html>

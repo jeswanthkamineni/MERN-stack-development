@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        /* element selector */
+        h1{
+            color:aqua;
+        }
+        
+            #green{
+                background-color:chartreuse;
+            }
+        .blue{
+            background-color:rgb(9, 48, 81);
+            color:bisque;
+          
+            
+        }
+        /* child selector */
+         div > p{
+            color:crimson;
+         }
+         /* descendent selector */
+        div > h3{
+            color:crimson;
+        }
+        /* universal selector */    
+      *{
+        margin:0;
+        padding:0;
+      }
+      a:visited{
+        color:brown;
+      }
+      a:link{
+        color:green;
+      }
+      a:active{
+        color:yellow;
+      }
+      a:hover{
+        background-color: chartreuse;
+      }
+      p#a:hover{
+        color:blue;
+      }
+      .abcd h1{
+      color:rgb(23, 37, 226)
+      }
+      .abcde h2{
+        color:rgb(15, 222, 46)
+      }
+      .xyz p{
+        color: #c36f1c;
+        background-color: rgb(212, 239, 170);
+      }
+      .zyx p{
+        color: #9d1f90;
+        background-color: bisque;
+      }
+        
+    </style>
+</head>
+<body>
+    <h1>Selectors</h1>
+    <div>
+        <p id="a">This is a paragraph.</p>
+    </div>
+    <div id="green">
+        <p>This is another paragraph.</p>
+    </div>
+    <div class="blue">
+        <article><h3>This is a heading</h3></article>
+        <div><p>This is a third paragraph.</p></div>
+    </div>
+    <a href="https://www.google.com">open google</a><div></div>
+    <a href="https://www.youtube.com">open youtube</a>
+    <div class="abc">
+        <div class="abcd xyz">
+            <h1>This is a heading</h1>
+            <p>This is a paragraph</p>
+        </div>
+
+
+        <div class="abcde zyx">
+            <h2>This is another heading</h2>
+            <p>This is another paragraph.</p>
+        </div>
+    </div>
+</body>
+</html>

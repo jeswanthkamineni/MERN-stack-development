@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity</title>
+    <style>
+        h1{
+            background-color: aqua;
+        }
+        #h1{
+            background-color: rgb(143, 143, 10);
+        }
+        .yellow{
+            background-color: rgb(110, 11, 203);
+        }
+        .red h1{
+            background-color: blue;
+        }
+        .yellow h1{
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 class="yellow red purple" id="h1" style="color: rgb(251, 255, 20);">CSS Specificity</h1>
+    </div>
+    
+</body>
+</html>

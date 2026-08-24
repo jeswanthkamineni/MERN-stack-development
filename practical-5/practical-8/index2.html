@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sizes and Values</title>
+    <style>
+        .box{
+            border: 2px solid black;
+            /* width: 2048px; */
+            width: 80vw;
+            height: 10vh;
+            margin: auto;
+            box-sizing: border-box;
+            background-color: aqua;
+        }
+        .container
+        {
+            border: 2px solid black;
+            width: 80vw;
+            min-height: 80vh;
+            margin: 60px auto;
+            box-sizing: border-box;
+            background-color: lightgreen;
+            font-size: 18px;
+        }
+        .container >div{
+            font-size: 2em;
+            border: 2px solid red;
+            width: 50%;
+        }
+        .container>div>div{
+            border: 2px solid blue;
+        }
+        .mycont{
+             border: 2px solid black;
+            width: 80vw;
+            margin: 60px auto;
+            box-sizing: border-box;
+            color: rgb(3, 29, 3);
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        This is a box
+    <div class="container"><div>
+   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum aspernatur omnis cumque iste unde ipsum obcaecati aperiam labore, similique nostrum saepe sed nisi? Modi iure inventore sapiente veritatis quae asperiores quaerat dolorem? Eos, consequatur optio rerum quos ipsum ad vitae non nihil unde aliquam et aliquid. Dolorum harum tempora dolore doloremque facere sint adipisci libero laudantium. Repellat quibusdam quos ea fuga quisquam deserunt accusamus nostrum ab nesciunt quis quasi, magni accusantium, soluta voluptates assumenda, nulla totam iusto. Ullam quae omnis nam id assumenda excepturi fugit itaque voluptas iusto repudiandae voluptatibus sint, consectetur debitis dignissimos? Aut minima voluptatem aliquid expedita animi!
+   <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi officia unde repudiandae accusantium, inventore commodi quasi nesciunt voluptatum distinctio architecto, sit, nihil maiores iste doloremque. Eius fugit cum illo mollitia?</div>
+   <div class="mycont">
+    Iam another container
+   </div>
+   </div>
+</body>
+</html>

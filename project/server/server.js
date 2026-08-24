@@ -1,0 +1,35 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+import { User, Darshan, Pooja, Event, DarshanBooking, PoojaBooking, Donation, EventRegistration } from './models/index.js';
+import { protect, adminOnly } from './middleware/auth.js';
+
+const app = express();
+app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
+app.use(express.json());
+const sign = user => jwt.sign({ id: user._id, name: user.name, email: user.email, role: user.role }, process.env.JWT_SECRET || 'development-secret', { expiresIn: '7d' });
+const asyncRoute = handler => (req, res, next) => Promise.resolve(handler(req, res, next)).catch(next);
+
+app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'Smart Temple API' }));
+app.post('/api/auth/register', asyncRoute(async (req, res) => { const { name, email, mobile, password } = req.body; if (!name || !email || !password || password.length < 6) return res.status(400).json({ message: 'Name, email and a password of 6+ characters are required.' }); if (await User.findOne({ email })) return res.status(409).json({ message: 'An account with this email already exists.' }); const user = await User.create({ name, email, mobile, password: await bcrypt.hash(password, 10) }); res.status(201).json({ token: sign(user), user: { id: user._id, name, email, role: user.role } }); }));
+app.post('/api/auth/login', asyncRoute(async (req, res) => { const user = await User.findOne({ email: req.body.email }).select('+password'); if (!user || !(await bcrypt.compare(req.body.password || '', user.password))) return res.status(401).json({ message: 'The email or password is incorrect.' }); res.json({ token: sign(user), user: { id: user._id, name: user.name, email: user.email, role: user.role } }); }));
+app.get('/api/auth/me', protect, asyncRoute(async (req, res) => res.json({ user: await User.findById(req.user.id).select('-password') })));
+app.get('/api/darshan', asyncRoute(async (req, res) => res.json(await Darshan.find())));
+app.get('/api/poojas', asyncRoute(async (req, res) => res.json(await Pooja.find())));
+app.get('/api/events', asyncRoute(async (req, res) => res.json(await Event.find().sort({ date: 1 }))));
+app.post('/api/darshan-bookings', protect, asyncRoute(async (req, res) => res.status(201).json(await DarshanBooking.create({ ...req.body, user: req.user.id }))));
+app.post('/api/pooja-bookings', protect, asyncRoute(async (req, res) => res.status(201).json(await PoojaBooking.create({ ...req.body, user: req.user.id }))));
+app.post('/api/donations', asyncRoute(async (req, res) => res.status(201).json(await Donation.create(req.body))));
+app.post('/api/event-registrations', protect, asyncRoute(async (req, res) => res.status(201).json(await EventRegistration.create({ ...req.body, user: req.user.id }))));
+app.get('/api/bookings', protect, asyncRoute(async (req, res) => { const [darshan, pooja] = await Promise.all([DarshanBooking.find({ user: req.user.id }).populate('darshan'), PoojaBooking.find({ user: req.user.id }).populate('pooja')]); res.json({ darshan, pooja }); }));
+app.post('/api/ai', asyncRoute(async (req, res) => { const text = (req.body.message || '').toLowerCase(); const answers = text.includes('pooja') ? 'For a focused blessing, Archana is a lovely choice. For a longer ceremony, consider Abhishekam or Sahasranama Archana.' : text.includes('darshan') ? 'We offer General, Special and VIP Darshan. Visit the Darshan page to see live slots and fees.' : text.includes('donat') ? 'You can support General, Annadanam, Temple Development, Education, Cow Protection or Festival initiatives from Donations.' : text.includes('event') ? 'Brahmotsavam and the weekly Annadanam are among our upcoming community events.' : 'I can help with darshan, pooja, donations, events, registration and booking status.'; res.json({ answer: answers }); }));
+app.get('/api/admin/stats', protect, adminOnly, asyncRoute(async (req, res) => res.json({ users: await User.countDocuments(), darshanBookings: await DarshanBooking.countDocuments(), poojaBookings: await PoojaBooking.countDocuments(), donations: await Donation.aggregate([{ $group: { _id: null, total: { $sum: '$amount' } } }]), events: await Event.countDocuments() })));
+app.get('/api/admin/users', protect, adminOnly, asyncRoute(async (req, res) => res.json(await User.find().select('-password').sort({ createdAt: -1 }))));
+app.use((req, res) => res.status(404).json({ message: 'Route not found.' }));
+app.use((error, req, res, next) => { console.error(error); res.status(error.status || 500).json({ message: 'Something went wrong on the server.' }); });
+const port = process.env.PORT || 5000;
+if (process.env.MONGODB_URI) mongoose.connect(process.env.MONGODB_URI).then(() => console.log('MongoDB connected')).catch(error => console.error('MongoDB connection failed:', error.message));
+app.listen(port, () => console.log(`Smart Temple API running on port ${port}`));

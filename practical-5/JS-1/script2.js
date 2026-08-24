@@ -1,0 +1,13 @@
+console.log("This is a variable page");
+var a=5;
+let b=6;
+let c="happy";
+const d="5";
+let _a="RK and SK";
+console.log(a,b,c,d,_a);
+console.log(a+","+b+","+c+","+d+","+_a);
+    console.log(a+b);
+    console.log(c+_a);
+    var f=b+d;
+    console.log(f);
+    typeof(f);

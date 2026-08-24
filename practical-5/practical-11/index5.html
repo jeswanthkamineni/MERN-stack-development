@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More On CSS Selectors</title>
+    <style>
+        .box:first-child{
+            background-color:red;
+        }
+        .box::first-line{
+            color:rgb(45, 45, 8);
+        }
+        .boxes *{
+            color:blue;
+            border:2px solid rgb(206, 94, 94);
+        }
+        .boxes::before{
+            content:"You are bad";
+            color:blue;
+        }
+        .boxes::after{
+            content:"You are good";
+            color:rgb(0, 195, 255);
+        }
+        .box::first-letter{
+            color:rgb(0, 8, 255);
+            font-size:40px;
+        }
+        input::placeholder{
+            color:blueviolet;
+        }
+        ::selection{
+            background-color:orange;
+            color:black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="boxes">
+        <div class="box">Iam First Box</div>
+        <div class="box">Iam Second Box</div>
+        <div class="box">Iam Third Box</div>
+        <input type="text" placeholder="Enter your name">
+    </div>
+</body>
+</html>

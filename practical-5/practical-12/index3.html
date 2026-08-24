@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        header{
+            position:sticky;
+            top:0;
+        }
+        nav{
+            background-color:burlywood;
+            height:83px;
+        }
+        main{
+            background-color:lightblue;
+            color:darkblue;
+            padding:34px;
+        }
+        .container{
+            background-color:rgb(229, 237, 152);
+            margin:12px 34px;
+            padding:55px 23px;
+            text-align:center;
+        }
+        .box1{
+            background-color:rgb(235, 230, 239);
+            height:70vh;
+            width:45%;
+            margin:0px 12px;
+            display:inline-block;
+            font-size:2em;
+        }
+        .box2{
+            background-color:rgb(214, 184, 239);
+            height:70vh;
+            width:45%;
+            margin:0px 12px;
+            display:inline-block;
+            font-size:2em;
+        }
+        .text-box{
+            padding:34px;
+            border:2px solid black;;
+            margin:50px 34vw;
+            font-size:2em;
+            border-radius:13px;
+        }
+        .orange-box{
+            background:orange;
+            height:32px;
+            width:32px;
+            position:fixed;
+            bottom:12px;
+            right:23px;
+            border-radius:60px;
+        }
+        footer{
+            height:100px;
+            background-color:burlywood;
+        }
+        nav ul{
+            display:flex;
+            list-style:none;
+            margin:0 23px;
+            padding:23px;
+            gap:23px;
+        }
+        h1{
+            text-align:center;
+            font-size:3em;
+            margin:23px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+         <nav>
+             <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+         </nav>
+    </header>
+    <main>
+        <h1>THIS IS A LAYOUT PAGE</h1>
+       <div class="container">
+        <div class="box1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam consequuntur rem ipsa? Officiis voluptatum perspiciatis, quos iste minima harum labore quia doloribus inventore debitis autem aliquid impedit ab eveniet architecto? Error consectetur laborum nesciunt? Velit voluptates dolor optio suscipit sunt commodi, obcaecati unde, provident adipisci ab iusto labore. Quasi beatae possimus, soluta suscipit corrupti nisi error saepe reiciendis praesentium dignissimos natus sint id. Quaerat placeat maxime deserunt saepe aperiam harum tenetur minima ipsa, dolor autem magnam aliquid quis eaque neque commodi labore voluptas soluta reprehenderit. Quaerat, dolor earum sint.
+        </div>
+        <div class="box2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus distinctio amet magni. Eum facilis dolore, nobis molestias cupiditate fugiat obcaecati praesentium iste odit, saepe cum ducimus distinctio, sint quam maiores suscipit perspiciatis mollitia in. Deleniti tempora porro at illo optio fugit minima repellendus facilis rerum blanditiis placeat incidunt soluta quaerat doloremque iure deserunt quasi dolore similique laborum, voluptatem a ullam culpa? Perferendis aspernatur est fugit quos totam excepturi, iusto recusandae. Amet eaque accusamus eos in libero, praesentium quaerat tempore accusantium temporibus, nobis, animi numquam sit autem eum debitis sunt commodi.</div>
+        <div class="text-box">
+            <p>Hello,Welcome to my world.</p>
+        </div>
+       </div>
+       <div class="orange-box"></div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
