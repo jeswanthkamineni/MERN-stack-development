@@ -5,6 +5,7 @@ const Navbar = () => {
     <>
     <div className="nav">
         This is a nav
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, dolorum.</p>
       
     </div>
     </>
